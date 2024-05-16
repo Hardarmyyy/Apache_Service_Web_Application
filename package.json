@@ -1,0 +1,19 @@
+{
+  "name": "server_node1",
+  "version": "1.0.0",
+  "description": "This repository demonstrates deployment on node1 server using ansible playbook",
+  "main": "index.js",
+  "scripts": {
+    "start": "pm2 start index.js",
+    "stop": "pm2 stop index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^3.6.0",
+    "express": "^4.19.2",
+    "pm2": "^5.3.1"
+  }
+}

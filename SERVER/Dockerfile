@@ -15,9 +15,6 @@ COPY . /node_server_01/
 
 RUN npm install pm2 -g
 
-# Define build-time arguments for env variables
-ARG PORT
-
 # Set environment variables during build in order to allow data persistence in the container
 ENV PORT=${PORT}
 

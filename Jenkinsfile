@@ -35,11 +35,7 @@ pipeline {
                 // Build Docker image with build-time arguments
                 script {
 
-                    def dockerBuildArgs = "--build-arg PORT=${PORT}"
-        
-                    sh "docker build -t apache-middleware-server-01-06:latest ${dockerBuildArgs} ."
-
-                    sh "docker tag apache-middleware-server-01-06:latest ${USERNAME}/apache-middleware-server-01-06:latest"
+                    sh "docker-compose build"
 
                 }
             }
@@ -54,7 +50,7 @@ pipeline {
 
                     sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
 
-                    sh "docker push ${USERNAME}/apache-middleware-server-01-06:latest"
+                    sh "docker-compose push"
 
                 }
             }

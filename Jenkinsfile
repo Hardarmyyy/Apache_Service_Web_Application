@@ -32,10 +32,11 @@ pipeline {
 
             steps {
 
-                // Build Docker image with build-time arguments
+                // Build Docker image with build-time envirnment arguments
                 script {
-
-                    sh "docker-compose build"
+                    // Load the .env file
+                    def envFile = managedFile id: 'env-file-id', targetLocation: '.env'
+                    sh "docker-compose --env-file .env build"
 
                 }
             }

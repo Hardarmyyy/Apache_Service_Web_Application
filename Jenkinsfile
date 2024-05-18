@@ -32,10 +32,14 @@ pipeline {
 
             steps {
 
-                // Build Docker image with build-time envirnment arguments
+                // Build Docker image with build-time environment arguments
                 script {
-                    // Load the .env file
-                    def envFile = managedFile id: 'env-file-id', targetLocation: '.env'
+                    // Retrieve the .env file from Jenkins credentials
+                    withCredentials([file(credentialsId: 'env-file', variable: 'ENV_FILE')]) {
+                        // Copy the .env file to the desired location
+                        sh 'cp $ENV_FILE .env'
+                    }
+                    // Run docker-compose with the environment file
                     sh "docker-compose --env-file .env build"
 
                 }

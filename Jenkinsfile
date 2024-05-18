@@ -70,21 +70,25 @@ pipeline {
     post {
 
         always {
-            //clean workspace after every build
-            cleanWs()
 
             sh 'docker logout'
         }
 
 	success {
 		
-		archiveArtifacts artifacts: '**/*', excludes: 'temp/**, *.log', allowEmptyArchive: true
+		archiveArtifacts artifacts: '**', excludes: 'temp/**, *.log', allowEmptyArchive: true
 
-                 echo 'Build successful! Artifacts archived.'
+                echo 'Build successful! Artifacts archived.'
+
+		//clean workspace
+                cleanWs()
+
 	 }
 
 	 failure {
 		 echo 'Build failed. Check the logs for details.'
+		//clean workspace                  
+                cleanWs()
 	 }
 
 

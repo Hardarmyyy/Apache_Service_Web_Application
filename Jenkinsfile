@@ -18,12 +18,15 @@ pipeline {
         stage('Install dependencies') {
 
             steps {
+		// Change directory to SERVER folder
+		
+		dir('SERVER') {
             
-                sh 'npm install'
+			sh 'npm install'
+	
+			echo 'Installing dependencies'
+		}
 
-                echo 'Installing dependencies'
-
-                archiveArtifacts artifacts: '**/*', excludes: 'temp/**, *.log', allowEmptyArchive: true
             }
 
         }
@@ -72,6 +75,18 @@ pipeline {
 
             sh 'docker logout'
         }
+
+	success {
+		
+		archiveArtifacts artifacts: '**/*', excludes: 'temp/**, *.log', allowEmptyArchive: true
+
+                 echo 'Build successful! Artifacts archived.'
+	 }
+
+	 failure {
+		 echo 'Build failed. Check the logs for details.'
+	 }
+
 
     }
 

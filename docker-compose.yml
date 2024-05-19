@@ -16,8 +16,6 @@ services:
       - middleware-network
     env_file: 
       - .env # Ensure to specify the relative path of the env file
-    ports:
-      - "${PORT}:${PORT}"  # backend-app service container will be exposed to the outside on this port
     environment:
       - "PORT=${PORT}"
 

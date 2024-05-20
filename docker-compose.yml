@@ -7,9 +7,9 @@ services:
     build: 
       context: ./SERVER # This specifies the directory where the middleware dockerfile will be running
       dockerfile: Dockerfile
-    image: hardarmyyy/apache-middleware-server-01-06
+    image: ${USERNAME}/apache-middleware-server-01-06
     labels: 
-      hardarmyyy/apache-middleware-server-01-06: latest
+      ${USERNAME}/apache-middleware-server-01-06: latest
     container_name: apache-middleware-server
     restart: always
     networks:
@@ -25,9 +25,9 @@ services:
     build:
       context: ./SERVICE # This specifies the directory where the middleware dockerfile will be running
       dockerfile: Dockerfile
-    image: hardarmyyy/apache-middleware-service-01-06
+    image: ${USERNAME}/apache-middleware-service-01-06
     labels: 
-      hardarmyyy/apache-middleware-service-01-06: latest
+      ${USERNAME}/apache-middleware-service-01-06: latest
     container_name: apache-middleware-service
     restart: always
     networks:
